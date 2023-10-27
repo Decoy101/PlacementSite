@@ -1,0 +1,18 @@
+{
+  "error": "Error",
+  "minLength": "The {{field}} must be at least {{min}} characters long.",
+  "maxLength": "The {{field}} must be at maximum {{max}} characters long.",
+  "invalidCredentials": "Invalid email address or password.",
+  "invalidPassword": "Your password is invalid. Please try again.",
+  "invalidEmail": "Please enter a valid email address.",
+  "emptyEmail": "Please enter your email address.",
+  "emptyPassword": "Please enter your password.",
+  "confirmPassword": "Password does not match the confirm password.",
+  "passwordRequirements": {
+    "number": "Includes number",
+    "lowercase": "Includes lowercase letter",
+    "uppercase": "Includes uppercase letter",
+    "special": "Includes special symbol",
+    "min": "8+ characters required"
+  }
+}
