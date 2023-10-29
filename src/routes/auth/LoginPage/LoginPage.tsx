@@ -1,7 +1,7 @@
 import { Flex, Paper, Text, Button, Divider } from "@mantine/core";
 import { useStyles } from "./LoginPage.styles";
 import { LoginForm } from "../components/LoginForm";
-import { signInWithGooglePopUp } from "@/firebase";
+import { signInWithGooglePopUp, createDocumentFromAuth } from "@/firebase";
 
 function GoogleIcon(props: React.ComponentPropsWithoutRef<"svg">) {
   return (
@@ -34,18 +34,18 @@ function GoogleIcon(props: React.ComponentPropsWithoutRef<"svg">) {
 
 function LoginPage() {
   const { classes } = useStyles();
+
+  const onButtonClick = async () => {
+    const response = await signInWithGooglePopUp();
+    createDocumentFromAuth(response);
+  };
   return (
     <>
       <Flex align={"center"} justify={"center"}>
         <div className={classes.loginContainer}>
           <Paper shadow="xl" radius="md" withBorder p="xl">
             <Text>Welcome to the Placement Portal</Text>
-            <Button
-              variant="default"
-              onClick={signInWithGooglePopUp}
-              w={350}
-              my="xs"
-            >
+            <Button variant="default" onClick={onButtonClick} w={350} my="xs">
               <Flex gap={7} align={"center"}>
                 <GoogleIcon />
                 <Text>Log In With Google</Text>

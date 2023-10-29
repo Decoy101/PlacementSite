@@ -1,12 +1,10 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import { lazy } from "react";
+import { AdminShell } from "./components/layout";
 
 const HomePage = lazy(() => import("./routes/home/HomePage/HomePage"));
 const LoginPage = lazy(() => import("./routes/auth/LoginPage/LoginPage"));
-const AccountPage = lazy(
-  () => import("./routes/account/AccountPage/AccountPage")
-);
 
 function App() {
   return (
@@ -15,7 +13,9 @@ function App() {
         <Routes>
           <Route path={"/"} element={<HomePage />} />
           <Route path={"/auth"} element={<LoginPage />} />
-          <Route path={"/account"} element={<AccountPage />} />
+          <Route path={"/account"} element={<AdminShell />}>
+            <Route path="*" element={<Navigate to={"./"} />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>

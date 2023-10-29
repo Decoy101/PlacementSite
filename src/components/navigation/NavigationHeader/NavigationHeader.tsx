@@ -12,11 +12,13 @@ import {
   rem,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { Link } from "react-scroll";
+import { Link as LinkScroll } from "react-scroll";
+import { useNavigate } from "react-router-dom";
 import { useStyles } from "./NavigationHeader.styles";
-import CollegeLogo from "../../assets/CollegeLogo-long-white.jpg";
+import CollegeLogo from "../../../assets/CollegeLogo-long-white.jpg";
 function NavigationHeader() {
   const { classes, theme } = useStyles();
+  const navigate = useNavigate();
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
 
@@ -33,14 +35,14 @@ function NavigationHeader() {
 
   const items = menuItems.map((item) => {
     return (
-      <Link
+      <LinkScroll
         to={item.link}
         className={classes.link}
         smooth={true}
         duration={300}
       >
         <Center className={classes.linkLabel}>{item.label}</Center>
-      </Link>
+      </LinkScroll>
     );
   });
 
@@ -73,7 +75,7 @@ function NavigationHeader() {
             my="sm"
             color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
           />
-          <Button>CGC Portal</Button>
+          <Button onClick={() => navigate("/auth")}>CGC Portal</Button>
         </ScrollArea>
       </Drawer>
     </>

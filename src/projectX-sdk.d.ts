@@ -15,7 +15,16 @@ export interface ContentValidation {
   max?: number;
 }
 
-export type IUser = {
-  name: string;
+export interface IAccount {
   email: string;
-};
+}
+
+export enum UserRoleEnum {
+  STUDENT = "student",
+  CGC = "cgc",
+}
+
+export interface IAvatar {
+  image?: string;
+  color?: string;
+}

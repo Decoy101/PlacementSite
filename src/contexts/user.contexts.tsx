@@ -1,21 +1,19 @@
-import { onAuthStateChangeListener } from "@/firebase";
-import { IUser } from "@/projectX-sdk";
+import { IAccount } from "@/projectX-sdk";
 import {
   ReactNode,
   createContext,
   useState,
+  useContext,
   Dispatch,
   SetStateAction,
-  useEffect,
 } from "react";
 
 interface UserContextProps {
-  currentUser: IUser;
-  setCurrentUser: Dispatch<SetStateAction<IUser>>;
+  currentUser: IAccount;
+  setCurrentUser: Dispatch<SetStateAction<IAccount>>;
 }
 export const UserContext = createContext<UserContextProps>({
   currentUser: {
-    name: "",
     email: "",
   },
   setCurrentUser: () => {},
@@ -24,19 +22,14 @@ export type UserProviderProps = {
   children: ReactNode;
 };
 export const UserProvider = ({ children }: UserProviderProps) => {
-  const [currentUser, setCurrentUser] = useState<IUser>({
-    name: "",
+  const [currentUser, setCurrentUser] = useState<IAccount>({
     email: "",
   });
   const value = { currentUser, setCurrentUser };
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChangeListener((user: IUser) =>
-      setCurrentUser(user)
-    );
-
-    return unsubscribe;
-  }, []);
-
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
+
+export function useUserContext() {
+  return useContext(UserContext);
+}

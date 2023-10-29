@@ -1,8 +1,8 @@
 import { globalStyles } from "./global";
 import { MantineThemeOverride } from "@mantine/core";
-
+import { customColors } from "./colors";
 export const customTheme: MantineThemeOverride = {
-  colorScheme: "light",
+  colorScheme: "dark",
   globalStyles: globalStyles,
   fontSizes: {
     xxs: "10px",
@@ -30,4 +30,5 @@ export const customTheme: MantineThemeOverride = {
     xl: "32px",
   },
   primaryShade: 6,
+  colors: customColors,
 };

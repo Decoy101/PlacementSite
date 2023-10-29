@@ -4,9 +4,9 @@ import {
   GoogleAuthProvider,
   getAuth,
   signOut,
-  onAuthStateChanged,
 } from "firebase/auth";
 
+import { getFirestore, doc } from "firebase/firestore";
 // const firebaseConfig = {
 //   apiKey: process.env.REACT_API_KEY,
 //   authDomain: process.env.REACT_AUTH_DOMAIN,
@@ -33,6 +33,11 @@ provider.setCustomParameters({
 
 export const auth = getAuth();
 export const signInWithGooglePopUp = () => signInWithPopup(auth, provider);
+
+export const db = getFirestore();
+export const createDocumentFromAuth = async (userAuth) => {
+  const userDocRef = doc(db, "users", userAuth.uid);
+  console.log(userDocRef);
+};
+
 export const signOutUser = async () => await signOut(auth);
-export const onAuthStateChangeListener = (callback) =>
-  onAuthStateChanged(auth, callback);

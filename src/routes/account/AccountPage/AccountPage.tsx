@@ -1,9 +1,4 @@
 function AccountPage() {
-  return (
-    <>
-      <h1>Account</h1>
-      <button>Sign Out</button>
-    </>
-  );
+  return <></>;
 }
 export default AccountPage;
