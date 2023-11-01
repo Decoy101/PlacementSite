@@ -1,11 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { initializeApp } from "firebase/app";
 import {
   signInWithPopup,
   GoogleAuthProvider,
   getAuth,
   signOut,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   onAuthStateChanged,
 } from "firebase/auth";
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import { IUser } from "./projectX-sdk";
 
 // const firebaseConfig = {
 //   apiKey: process.env.REACT_API_KEY,
@@ -33,6 +38,48 @@ provider.setCustomParameters({
 
 export const auth = getAuth();
 export const signInWithGooglePopUp = () => signInWithPopup(auth, provider);
-export const signOutUser = async () => await signOut(auth);
-export const onAuthStateChangeListener = (callback) =>
+const db = getFirestore();
+export const createUserDocumentFromAuth = async (userAuth: IUser) => {
+  const userDocRef = doc(db, "users", userAuth!.uid);
+  console.log(userDocRef);
+
+  const userSnapshot = await getDoc(userDocRef);
+
+  if (!userSnapshot.exists()) {
+    const { email, role } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      await setDoc(userDocRef, {
+        email,
+        createdAt,
+        role,
+      });
+    } catch (error) {
+      console.log("error creating the user");
+    }
+  }
+
+  return userDocRef;
+};
+
+export const createAuthUserUsingEmailAndPassword = async (
+  email: string,
+  password: string
+) => {
+  if (!email || !password) return;
+  return await createUserWithEmailAndPassword(auth, email, password);
+};
+
+export const signInAuthUserWithEmailAndPassword = async (
+  email: string,
+  password: string
+) => {
+  if (!email || !password) return;
+  return await signInWithEmailAndPassword(auth, email, password);
+};
+
+export const onAuthStateChangedListener = (callback) => {
   onAuthStateChanged(auth, callback);
+};
+export const signOutUser = async () => await signOut(auth);

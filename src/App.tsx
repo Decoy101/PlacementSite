@@ -1,22 +1,12 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
-import { lazy } from "react";
-
-const HomePage = lazy(() => import("./routes/home/HomePage/HomePage"));
-const LoginPage = lazy(() => import("./routes/auth/LoginPage/LoginPage"));
-const AccountPage = lazy(
-  () => import("./routes/account/AccountPage/AccountPage")
-);
+import Routes from "./routes/Routes";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          <Route path={"/"} element={<HomePage />} />
-          <Route path={"/auth"} element={<LoginPage />} />
-          <Route path={"/account"} element={<AccountPage />} />
-        </Routes>
+        <Routes />
       </BrowserRouter>
     </>
   );

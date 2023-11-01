@@ -15,10 +15,12 @@ import { useDisclosure } from "@mantine/hooks";
 import { Link } from "react-scroll";
 import { useStyles } from "./NavigationHeader.styles";
 import CollegeLogo from "../../assets/CollegeLogo-long-white.jpg";
+import { useNavigate } from "react-router-dom";
 function NavigationHeader() {
   const { classes, theme } = useStyles();
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
+  const navigate = useNavigate();
 
   const menuItems = [
     { label: "Home", link: "/#home" },
@@ -52,7 +54,12 @@ function NavigationHeader() {
           <Group spacing={0} className={classes.hiddenMobile}>
             {items}
           </Group>
-          <Button className={classes.hiddenMobile}>CGC Portal</Button>
+          <Button
+            className={classes.hiddenMobile}
+            onClick={() => navigate("auth")}
+          >
+            CGC Portal
+          </Button>
           <Burger
             opened={drawerOpened}
             onClick={toggleDrawer}
@@ -73,7 +80,7 @@ function NavigationHeader() {
             my="sm"
             color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
           />
-          <Button>CGC Portal</Button>
+          <Button onClick={() => navigate("/portal")}>CGC Portal</Button>
         </ScrollArea>
       </Drawer>
     </>
