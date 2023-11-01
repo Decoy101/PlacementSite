@@ -1,6 +1,11 @@
-export interface ILogin {
+export interface IAccount {
   email: string;
   password: string;
+}
+export interface INewStudent {
+  email: string;
+  password: string;
+  confirmPassword?: string;
 }
 
 export interface IResetPassword {
@@ -28,3 +33,8 @@ export interface IAvatar {
   image?: string;
   color?: string;
 }
+export type IUser = {
+  email: string;
+  uid: string;
+  role: string;
+};
