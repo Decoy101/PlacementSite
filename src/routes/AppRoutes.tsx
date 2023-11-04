@@ -6,6 +6,7 @@ import { AccountPage } from "@/modules/account/AccountPage";
 import { Profile } from "@/modules/portal/Profile";
 import { AdminShell } from "@/components/layout";
 import ProtectedRoute from "./ProtectedRoute";
+import { Companies } from "@/modules/portal/Companies";
 
 function AppRoutes() {
   return (
@@ -17,6 +18,7 @@ function AppRoutes() {
               <Route element={<ProtectedRoute />}>
                 <Route path={appPaths.root} element={<AccountPage />} />
                 <Route path={appPaths.profile} element={<Profile />} />
+                <Route path={appPaths.companies} element={<Companies />} />
                 {/* <Route path="*" element={<Navigate to={appRoot} />} /> */}
               </Route>
             </Route>
