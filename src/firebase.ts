@@ -10,9 +10,17 @@ import {
   onAuthStateChanged,
   User,
 } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  getDocs,
+  collection,
+} from "firebase/firestore";
 import { PersonalDetails } from "./modules/portal/Profile/components/Personal/PersonalDetails.types";
 import { AcademicDetails } from "./modules/portal/Profile/components/Academic/AcademicDetails.types";
+import { Company } from "./modules/portal/Companies/Company.types";
 
 // const firebaseConfig = {
 //   apiKey: process.env.REACT_API_KEY,
@@ -151,3 +159,33 @@ export const onAuthStateChangedListener = (callback) => {
   onAuthStateChanged(auth, callback);
 };
 export const signOutUser = async () => await signOut(auth);
+
+export const getUser = async (userAuth: User) => {
+  const userRef = doc(db, "users", userAuth!.uid);
+  const userSnapshot = await getDoc(userRef);
+  return userSnapshot.data();
+};
+
+// Companies Bullshit
+export const addCompany = async (company: Company) => {
+  const companyRef = doc(db, "companies", company.name);
+  const companySnapshot = await getDoc(companyRef);
+  if (!companySnapshot.exists()) {
+    try {
+      await setDoc(companyRef, { ...company });
+    } catch (error) {
+      console.log("Couldn't Add the company to the list");
+    }
+  }
+};
+
+export const getAllCompanies = async () => {
+  const allCompaniesSnapshots = await getDocs(collection(db, "companies"));
+  const allCompaniesData: Company[] = [];
+  if (allCompaniesSnapshots) {
+    allCompaniesSnapshots.forEach((doc) =>
+      allCompaniesData.push(doc.data() as Company)
+    );
+  }
+  return allCompaniesData;
+};
