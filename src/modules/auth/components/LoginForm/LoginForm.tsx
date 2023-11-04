@@ -13,8 +13,6 @@ function LoginForm() {
   const onLogIn: SubmitHandler<IAccount> = async (data) => {
     try {
       await signInAuthUserWithEmailAndPassword(data.email, data.password);
-      console.log("Logged In");
-      navigate("/account");
     } catch (error) {
       switch (error.code) {
         case "auth/invalid-login-credentials":

@@ -27,7 +27,7 @@ export const useStyles = createStyles(
         },
       },
       "&:hover": {
-        backgroundColor: theme.colors.dark[3],
+        backgroundColor: theme.colors.gray[3],
       },
       "&[data-expanded]": {
         backgroundColor: theme.fn.primaryColor(),
@@ -43,7 +43,7 @@ export const useStyles = createStyles(
         },
       },
       "&:hover": {
-        backgroundColor: theme.colors.dark[3],
+        backgroundColor: theme.colors.gray[3],
       },
       "&[data-expanded]": {
         backgroundColor: theme.fn.primaryColor(),

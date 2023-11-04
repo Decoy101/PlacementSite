@@ -2,7 +2,7 @@ import { NavbarFooterProps } from "../NavbarFooter/NavbarFooter.types";
 import { ReactNode } from "react";
 export type NavbarAsideProps = {
   // headerData?: NavbarHeaderDataProps
-
+  isSliding: boolean;
   footerMenu: NavbarFooterProps;
 };
 

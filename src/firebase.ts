@@ -8,9 +8,11 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  User,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
-import { IUser } from "./projectX-sdk";
+import { PersonalDetails } from "./modules/portal/Profile/components/Personal/PersonalDetails.types";
+import { AcademicDetails } from "./modules/portal/Profile/components/Academic/AcademicDetails.types";
 
 // const firebaseConfig = {
 //   apiKey: process.env.REACT_API_KEY,
@@ -39,21 +41,23 @@ provider.setCustomParameters({
 export const auth = getAuth();
 export const signInWithGooglePopUp = () => signInWithPopup(auth, provider);
 const db = getFirestore();
-export const createUserDocumentFromAuth = async (userAuth: IUser) => {
+export const createUserDocumentFromAuth = async (
+  userAuth: User,
+  additionalInfo: { role: string } | undefined
+) => {
   const userDocRef = doc(db, "users", userAuth!.uid);
-  console.log(userDocRef);
 
   const userSnapshot = await getDoc(userDocRef);
 
   if (!userSnapshot.exists()) {
-    const { email, role } = userAuth;
+    const { email } = userAuth;
     const createdAt = new Date();
 
     try {
       await setDoc(userDocRef, {
         email,
         createdAt,
-        role,
+        ...additionalInfo,
       });
     } catch (error) {
       console.log("error creating the user");
@@ -61,6 +65,70 @@ export const createUserDocumentFromAuth = async (userAuth: IUser) => {
   }
 
   return userDocRef;
+};
+
+export const getUserDetails = async (userAuth: User) => {
+  const personalDetailsRef = doc(
+    db,
+    "users",
+    userAuth!.uid,
+    "details",
+    "personalDetails"
+  );
+  const academicDetailsRef = doc(
+    db,
+    "users",
+    userAuth!.uid,
+    "details",
+    "academicDetails"
+  );
+  try {
+    const personalDetailsSnapshot = await getDoc(personalDetailsRef);
+    const academicDetailsSnapshot = await getDoc(academicDetailsRef);
+
+    const personalDetails = personalDetailsSnapshot.exists()
+      ? personalDetailsSnapshot.data()
+      : null;
+    const academicDetails = academicDetailsSnapshot.exists()
+      ? academicDetailsSnapshot.data()
+      : null;
+
+    return { personalDetails, academicDetails };
+  } catch (error) {
+    console.error("Error fetching user details:", error);
+    throw error; // Rethrow the error or handle it according to your needs
+  }
+};
+
+export const updateDetails = async (
+  userAuth: User,
+  personal_formfields: PersonalDetails,
+  academic_formfields: AcademicDetails
+) => {
+  const userPersonalDoc = doc(
+    db,
+    "users",
+    userAuth!.uid,
+    "details",
+    "personalDetails"
+  );
+  const userAcademicDoc = doc(
+    db,
+    "users",
+    userAuth!.uid,
+    "details",
+    "academicDetails"
+  );
+  try {
+    await setDoc(userPersonalDoc, {
+      ...personal_formfields,
+    });
+    await setDoc(userAcademicDoc, {
+      ...academic_formfields,
+    });
+  } catch (error) {
+    console.log("Couldn't update the personal details");
+  }
 };
 
 export const createAuthUserUsingEmailAndPassword = async (

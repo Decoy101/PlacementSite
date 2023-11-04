@@ -1,30 +1,34 @@
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+
 import { IconBell } from "@/components/icons";
-import { Navbar, Flex, ScrollArea, Divider } from "@mantine/core";
-import { useMediaQuery } from "@mantine/hooks";
+import { Navbar, ScrollArea, Divider, Text } from "@mantine/core";
+
 import NavbarAsideSkeleton from "./NavbarAsideSkeleton";
 import NavbarFooter from "../NavbarFooter/NavbarFooter";
 import { useStyles } from "./NavbarAside.styles";
 import { LinksGroup } from "../NavbarLink/NavbarLink";
 import { NavbarAsideProps } from "./NavbarAside.types";
+import { navStore } from "@/data/store/navbar.store";
+import { useAtomValue } from "jotai";
 function NavbarAside({ isSliding, footerMenu }: NavbarAsideProps) {
-  const [isAsideFullWidth, setIsAsideFullWidth] = useState(true);
-
+  const isAsideFullWidth = useAtomValue(navStore.isAsideFullWidth);
+  const isLoadingNavbar = useAtomValue(navStore.isLoadingNavbarAtom);
   const truncateMaxWidth = 130;
-  const { classes, theme } = useStyles({
+
+  const { classes } = useStyles({
     showFullWidth: isAsideFullWidth,
     isSliding,
     truncateMaxWidth,
   });
 
-  const matches = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
   return (
     <>
       <div
         className={classes.aside}
-        style={{ minWidth: isSliding ? 280 : "unset" }}
+        style={{ minWidth: isSliding ? 380 : "unset" }}
       >
+        {/* <Image src="" fit="contain" w={200} h="height" /> */}
+        {/* Here is where the logo goes */}
         <Navbar.Section className={classes.linksOptions}>
           <LinksGroup
             icon={<IconBell />}
@@ -34,63 +38,45 @@ function NavbarAside({ isSliding, footerMenu }: NavbarAsideProps) {
           />
           <LinksGroup
             icon={<IconBell />}
-            label="Home"
+            label="Companies"
             width={280}
             isActive={false}
           />
           <LinksGroup
             icon={<IconBell />}
-            label="Home"
+            label="Academic Calendar"
             width={280}
             isActive={false}
           />
           <LinksGroup
             icon={<IconBell />}
-            label="Home"
+            label="Work Ex"
             width={280}
             isActive={false}
           />
           <Divider mt="md" />
         </Navbar.Section>
         <Navbar.Section grow component={ScrollArea} className={classes.links}>
-          <NavbarAsideSkeleton />
-          {/* <Flex align="center" direction="column" className={classes.listSites}>
-                    {isLoadingNavbar ? (
-                        <NavbarAsideSkeleton />
-                    ) : (
-                        asideLinks.map((linksGroup, index) => (
-                            <Fragment key={linksGroup.name}>
-                                {index > 0 && <Divider mt="md" style={{ width: '100%' }} />}
-                                <p className={classes.navSection}>{asideLinkGroupConfig[linksGroup.name]}</p>
-                                {linksGroup.links.map((link) => (
-                                    <div
-                                        style={{ width: '100%' }}
-                                        key={link.id}
-                                        onMouseEnter={() => {
-                                            if (link.onHover && !matches && isAsideFullWidth) link.onHover(false)
-                                        }}
-                                        onClick={() => {
-                                            if (link.onHover && (matches || !isAsideFullWidth)) link.onHover(true)
-                                        }}>
-                                        <LinksGroup
-                                            icon={link.icon}
-                                            image={link.image}
-                                            label={link.label}
-                                            width={280}
-                                            isActive={link.id === activeLinkId}
-                                            onlyIcon={!isAsideFullWidth}
-                                            handleClick={() => {
-                                                if (link.onClickUrl) {
-                                                    navigate(link.onClickUrl)
-                                                }
-                                            }}
-                                        />
-                                    </div>
-                                ))}
-                            </Fragment>
-                        ))
-                    )}
-                </Flex> */}
+          {isLoadingNavbar ? (
+            <NavbarAsideSkeleton />
+          ) : (
+            <>
+              <Text fw={400} mt={"lg"} fz={"sm"} c={"purple"}>
+                Quick Links
+              </Text>
+              <LinksGroup icon={null} label="College Site" width={280} />
+              <LinksGroup icon={null} label="AIMS" width={280} />
+              <Text mt={"lg"} fz={"sm"} fw={400} c={"purple"}>
+                Support
+              </Text>
+              <LinksGroup icon={null} label="cgc@iiitdwd.ac.in" />
+              <LinksGroup icon={null} label="velocity@iiitdwd.ac.in" />
+              <Text mt={"lg"} fz={"sm"} fw={400} c={"purple"}>
+                Module Designer
+              </Text>
+              <LinksGroup icon={null} label="Aman Gupta" />
+            </>
+          )}
         </Navbar.Section>
         <NavbarFooter
           name={footerMenu.name}

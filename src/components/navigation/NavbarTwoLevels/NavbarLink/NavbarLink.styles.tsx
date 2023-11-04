@@ -16,7 +16,7 @@ export const useStyles = createStyles(
       transition: "all 0.2s",
 
       "&:hover": {
-        backgroundColor: theme.colors.dark[3],
+        backgroundColor: theme.colors.gray[2],
         color: theme.colorScheme === "dark" ? theme.white : theme.black,
       },
 

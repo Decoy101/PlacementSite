@@ -9,12 +9,12 @@ function AuthRoutes() {
     <>
       <SuspenseLoader>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/site" element={<HomePage />} />
           <Route element={<AuthShell />}>
             <Route path={authRoot} element={<LoginForm />} />
             <Route path={authPaths.login} element={<LoginForm />} />
             <Route path={authPaths.signUp} element={<SignUpForm />} />
-            <Route path="*" element={<Navigate to={authRoot} />} />
+            {/* <Route path="*" element={<Navigate to={authRoot} />} /> */}
           </Route>
         </Routes>
       </SuspenseLoader>

@@ -13,13 +13,15 @@ function SignUpForm() {
   const methods = useForm<INewStudent>();
 
   const onSignUp: SubmitHandler<INewStudent> = async (data) => {
+    console.log(data);
     try {
       const user = await createAuthUserUsingEmailAndPassword(
         data.email,
         data.password
       );
-      await createUserDocumentFromAuth(user!.user);
+      await createUserDocumentFromAuth(user!.user, { role: "student" });
     } catch (error) {
+      console.log(error);
       return alert("Can't complete the user creation due to some error");
     }
   };
@@ -30,7 +32,7 @@ function SignUpForm() {
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSignUp)}>
           <TextInput
-            id="signUp_email"
+            id="email"
             type="email"
             label="UserID/Institute Email"
             control={methods.control}
@@ -39,13 +41,13 @@ function SignUpForm() {
           />
 
           <PasswordInput
-            id="signUp_password"
+            id="password"
             label="Password"
             control={methods.control}
             required
           />
           <PasswordInput
-            id="confirm_password"
+            id="confirmPassword"
             label="Confirm Password"
             control={methods.control}
             required

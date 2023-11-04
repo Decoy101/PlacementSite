@@ -1,13 +1,24 @@
 import { useState } from "react";
-import { NavbarAsideProps } from "./NavbarAside/NavbarAside.types";
-import { Navbar, ScrollArea, UnstyledButton, Text } from "@mantine/core";
+
+import { Navbar } from "@mantine/core";
 import { NavbarAside } from "./NavbarAside";
 import { useStyles } from "./NavbarTwoLevels.styles";
-function NavbarTwoLevels({ footerMenu }: NavbarAsideProps) {
+import { NavbarFooterProps } from "./NavbarFooter/NavbarFooter.types";
+
+type NavbarProps = {
+  hidden: boolean;
+  footerMenu: NavbarFooterProps;
+};
+function NavbarTwoLevels({ footerMenu, hidden }: NavbarProps) {
   const [isSliding, setIsSliding] = useState<boolean>(false);
   const { classes } = useStyles();
   return (
-    <Navbar width={{ sm: 200 }} hiddenBreakpoint="sm">
+    <Navbar
+      width={{ sm: 280 }}
+      hiddenBreakpoint="sm"
+      className={classes.navbar}
+      hidden={hidden}
+    >
       <Navbar.Section grow className={classes.wrapper}>
         <NavbarAside footerMenu={footerMenu} isSliding={isSliding} />
       </Navbar.Section>

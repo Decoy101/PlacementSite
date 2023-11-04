@@ -1,4 +1,5 @@
-export const appRoot = "/portal";
+export const appRoot = "/";
 export const appPaths = {
-  root: "/home",
+  root: "/portal",
+  profile: "/portal/profile",
 };
