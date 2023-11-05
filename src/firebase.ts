@@ -22,6 +22,7 @@ import {
 import { PersonalDetails } from "./modules/portal/Profile/components/Personal/PersonalDetails.types";
 import { AcademicDetails } from "./modules/portal/Profile/components/Academic/AcademicDetails.types";
 import { Company } from "./modules/portal/Companies/Company.types";
+import { Announcement } from "./modules/dashboard/components/Announcements/Announcements.types";
 
 // const firebaseConfig = {
 //   apiKey: process.env.REACT_API_KEY,
@@ -193,4 +194,36 @@ export const getAllCompanies = async () => {
     );
   }
   return allCompaniesData;
+};
+
+export const addAnnouncement = async (announcement: Announcement) => {
+  const ref = doc(db, "mail", announcement.title);
+  const announcementRef = doc(db, "announcements", announcement.title);
+  try {
+    await setDoc(ref, {
+      to: "00amangpt00@gmail.com",
+      message: {
+        subject: announcement.title,
+        text: "",
+        html: announcement.content,
+      },
+    });
+    await setDoc(announcementRef, { ...announcement });
+    console.log("Announcement added successfully!");
+  } catch (error) {
+    console.error("Error adding announcement: ", error);
+  }
+};
+
+export const getAllAnnouncements = async () => {
+  const allAnnouncementsSnapshots = await getDocs(
+    collection(db, "announcements")
+  );
+  const allAnnouncements: Announcement[] = [];
+  if (allAnnouncementsSnapshots) {
+    allAnnouncementsSnapshots.forEach((announcement) =>
+      allAnnouncements.push(announcement.data() as Announcement)
+    );
+  }
+  return allAnnouncements;
 };

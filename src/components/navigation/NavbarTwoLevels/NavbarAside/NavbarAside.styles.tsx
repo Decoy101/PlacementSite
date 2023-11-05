@@ -13,7 +13,7 @@ export const useStyles = createStyles(
   ) => ({
     aside: {
       flex: showFullWidth && !isSliding ? "1 1 100%" : "0 0 64px",
-      marginTop: "2rem",
+      marginTop: "1rem",
       display: "flex",
       flexDirection: "column",
       alignItems: showFullWidth && !isSliding ? "flex-start" : "center",

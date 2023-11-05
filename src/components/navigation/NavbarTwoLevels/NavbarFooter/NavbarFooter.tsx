@@ -70,7 +70,7 @@ function NavbarFooter({ name, email, avatar, menu }: NavbarFooterProps) {
               {menu}
             </Menu.Dropdown>
           </Menu>
-          <Menu
+          {/* <Menu
             width={432}
             position="top-start"
             transitionProps={{ transition: "pop-top-left" }}
@@ -81,9 +81,9 @@ function NavbarFooter({ name, email, avatar, menu }: NavbarFooterProps) {
               </UnstyledButton>
             </Menu.Target>
             <Menu.Dropdown sx={{ position: "fixed" }}>
-              {/* <NavbarFooterNotifications /> */}
+              <NavbarFooterNotifications />
             </Menu.Dropdown>
-          </Menu>
+          </Menu> */}
         </>
       </Group>
     </>

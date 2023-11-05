@@ -1,7 +1,7 @@
 // import { useNavigate } from "react-router-dom";
 
 import { IconBell } from "@/components/icons";
-import { Navbar, ScrollArea, Divider, Text, Image, Space } from "@mantine/core";
+import { Navbar, ScrollArea, Divider, Text, Space, Image } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import NavbarAsideSkeleton from "./NavbarAsideSkeleton";
 import NavbarFooter from "../NavbarFooter/NavbarFooter";
@@ -30,8 +30,6 @@ function NavbarAside({ isSliding, footerMenu }: NavbarAsideProps) {
         className={classes.aside}
         style={{ minWidth: isSliding ? 380 : "unset" }}
       >
-        {/* <Image src={CGCLogo} fit="contain" height={80} width={200} ml={"xs"} /> */}
-        {/* Here is where the logo goes */}
         <Space h={"xl"} />
         <Navbar.Section className={classes.linksOptions} mt={"xl"}>
           <LinksGroup
@@ -39,6 +37,7 @@ function NavbarAside({ isSliding, footerMenu }: NavbarAsideProps) {
             label="Home"
             width={280}
             isActive={false}
+            handleClick={() => navigate(appPaths.root)}
           />
           <LinksGroup
             icon={<IconBell />}
