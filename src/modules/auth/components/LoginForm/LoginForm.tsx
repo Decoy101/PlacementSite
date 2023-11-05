@@ -1,15 +1,16 @@
 import { TextInput, PasswordInput } from "@/components/forms";
 import { LoadingButton } from "@/components/core/LoadingButton";
 import { Space, Text, Divider } from "@mantine/core";
-import strings from "@/common/strings/buttons.json";
+import { useNavigate } from "react-router-dom";
 import { FormProvider, useForm, SubmitHandler } from "react-hook-form";
 import { IAccount } from "@/projectX-sdk";
 import { validationSchema } from "./LoginForm.validations";
 import { signInAuthUserWithEmailAndPassword } from "@/firebase";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 function LoginForm() {
   const methods = useForm<IAccount>();
   const navigate = useNavigate();
+
   const onLogIn: SubmitHandler<IAccount> = async (data) => {
     try {
       await signInAuthUserWithEmailAndPassword(data.email, data.password);
@@ -43,23 +44,42 @@ function LoginForm() {
             control={methods.control}
             validations={validationSchema.email}
           />
-          <Space mt="xl" />
+          <Space mt="md" />
           <PasswordInput
             id="password"
             label="Password"
             control={methods.control}
             required
           />
+
           <Space pb="sm" />
+          <Text>
+            Forgot Password? <Link to={"/forgot-password"}>Reset it!</Link>
+          </Text>
+
           <LoadingButton
             type="submit"
             fullWidth
-            mt="lg"
+            mt="sm"
             radius="sm"
             isLoading={false}
           >
-            {strings.signIn}
+            Log In
           </LoadingButton>
+          <LoadingButton
+            fullWidth
+            mt="sm"
+            radius="sm"
+            isLoading={false}
+            onClick={() => navigate("/sign-up")}
+            variant="default"
+          >
+            Sign Up
+          </LoadingButton>
+
+          {/* <Text mt={"lg"}>
+            Don't have an account? <Link to={"/sign-up"}>Sign up!</Link>
+          </Text> */}
         </form>
       </FormProvider>
     </div>

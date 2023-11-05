@@ -1,8 +1,8 @@
 // import { useNavigate } from "react-router-dom";
 
 import { IconBell } from "@/components/icons";
-import { Navbar, ScrollArea, Divider, Text } from "@mantine/core";
-
+import { Navbar, ScrollArea, Divider, Text, Image, Space } from "@mantine/core";
+import { useNavigate } from "react-router-dom";
 import NavbarAsideSkeleton from "./NavbarAsideSkeleton";
 import NavbarFooter from "../NavbarFooter/NavbarFooter";
 import { useStyles } from "./NavbarAside.styles";
@@ -10,10 +10,13 @@ import { LinksGroup } from "../NavbarLink/NavbarLink";
 import { NavbarAsideProps } from "./NavbarAside.types";
 import { navStore } from "@/data/store/navbar.store";
 import { useAtomValue } from "jotai";
+import { appPaths } from "@/routes/paths";
+import CGCLogo from "../../../../assets/cgc-nav-logo.png";
 function NavbarAside({ isSliding, footerMenu }: NavbarAsideProps) {
   const isAsideFullWidth = useAtomValue(navStore.isAsideFullWidth);
   const isLoadingNavbar = useAtomValue(navStore.isLoadingNavbarAtom);
   const truncateMaxWidth = 130;
+  const navigate = useNavigate();
 
   const { classes } = useStyles({
     showFullWidth: isAsideFullWidth,
@@ -27,9 +30,10 @@ function NavbarAside({ isSliding, footerMenu }: NavbarAsideProps) {
         className={classes.aside}
         style={{ minWidth: isSliding ? 380 : "unset" }}
       >
-        {/* <Image src="" fit="contain" w={200} h="height" /> */}
+        {/* <Image src={CGCLogo} fit="contain" height={80} width={200} ml={"xs"} /> */}
         {/* Here is where the logo goes */}
-        <Navbar.Section className={classes.linksOptions}>
+        <Space h={"xl"} />
+        <Navbar.Section className={classes.linksOptions} mt={"xl"}>
           <LinksGroup
             icon={<IconBell />}
             label="Home"
@@ -41,12 +45,14 @@ function NavbarAside({ isSliding, footerMenu }: NavbarAsideProps) {
             label="Companies"
             width={280}
             isActive={false}
+            handleClick={() => navigate(appPaths.companies)}
           />
           <LinksGroup
             icon={<IconBell />}
             label="Academic Calendar"
             width={280}
             isActive={false}
+            handleClick={() => navigate(appPaths.calendar)}
           />
           <LinksGroup
             icon={<IconBell />}

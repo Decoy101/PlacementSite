@@ -7,6 +7,7 @@ import {
   signOut,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  sendPasswordResetEmail,
   onAuthStateChanged,
   User,
 } from "firebase/auth";
@@ -159,6 +160,10 @@ export const onAuthStateChangedListener = (callback) => {
   onAuthStateChanged(auth, callback);
 };
 export const signOutUser = async () => await signOut(auth);
+
+export const forgotPassword = async (email: string) => {
+  return await sendPasswordResetEmail(auth, email);
+};
 
 export const getUser = async (userAuth: User) => {
   const userRef = doc(db, "users", userAuth!.uid);

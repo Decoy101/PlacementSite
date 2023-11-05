@@ -45,7 +45,7 @@ export function LinksGroup({
     >
       <UnstyledButton
         onClick={() => {
-          if (closeNavbarOnClick) if (handleClick) handleClick();
+          if (handleClick) handleClick();
         }}
         className={cx(classes.control, {
           [classes.active]: isActive,

@@ -67,7 +67,7 @@ function NavbarPopover({ name, email, avatar }: NavbarPopoverProps) {
         </Menu.Item>
       </Tooltip>
       <Menu.Item icon={<IconBell />}>Notifications Settings</Menu.Item>
-      <Menu.Item icon={<IconSettings />}>Account Settings</Menu.Item>
+      <Menu.Item icon={<IconSettings />}>Change Password</Menu.Item>
       <Divider my="sm" color="dark.1" />
       <Menu.Item icon={<IconLogout />} onClick={signOut}>
         Sign Out

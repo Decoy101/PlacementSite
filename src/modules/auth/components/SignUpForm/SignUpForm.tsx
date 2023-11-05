@@ -1,5 +1,5 @@
 import { TextInput, PasswordInput } from "@/components/forms";
-
+import { Link } from "react-router-dom";
 import { LoadingButton } from "@/components/core/LoadingButton";
 import { Space, Text, Divider } from "@mantine/core";
 import { FormProvider, useForm, SubmitHandler } from "react-hook-form";
@@ -54,6 +54,9 @@ function SignUpForm() {
           />
 
           <Space pb="sm" />
+          <Text>
+            Have an exiting account? <Link to="/">Log In!</Link>
+          </Text>
           <LoadingButton
             type="submit"
             fullWidth
