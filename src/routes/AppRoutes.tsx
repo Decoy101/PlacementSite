@@ -6,7 +6,11 @@ import { AccountPage } from "@/modules/account/AccountPage";
 import { Profile } from "@/modules/portal/Profile";
 import { AdminShell } from "@/components/layout";
 import ProtectedRoute from "./ProtectedRoute";
+<<<<<<< HEAD
 import { PlacementCalendar } from "@/modules/portal/PlacementCalendar";
+=======
+import { Companies } from "@/modules/portal/Companies";
+>>>>>>> component/companies
 
 function AppRoutes() {
   return (
@@ -18,10 +22,14 @@ function AppRoutes() {
               <Route element={<ProtectedRoute />}>
                 <Route path={appPaths.root} element={<AccountPage />} />
                 <Route path={appPaths.profile} element={<Profile />} />
+<<<<<<< HEAD
                 <Route
                   path={appPaths.calendar}
                   element={<PlacementCalendar />}
                 />
+=======
+                <Route path={appPaths.companies} element={<Companies />} />
+>>>>>>> component/companies
                 {/* <Route path="*" element={<Navigate to={appRoot} />} /> */}
               </Route>
             </Route>
