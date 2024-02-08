@@ -1,16 +1,17 @@
-import { NavbarTwoLevels as LayoutNavbar } from "@/components/navigation";
+// import { NavbarTwoLevels as LayoutNavbar } from "@/components/navigation";
 
 function StudentNavbar() {
   return (
     <>
-      <LayoutNavbar
+      {/* <LayoutNavbar
         footerMenu={{
           name: "",
           email: "",
           avatar: undefined,
           menu: "",
+          hidden:"true",
         }}
-      />
+      /> */}
     </>
   );
 }

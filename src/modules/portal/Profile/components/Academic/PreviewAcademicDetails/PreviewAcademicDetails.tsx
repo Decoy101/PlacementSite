@@ -7,15 +7,7 @@ type PreviewAcademicDetails = {
 };
 
 function PreviewAcademicDetails({ data }: PreviewAcademicDetails) {
-  const {
-    programme,
-    academicYear,
-    regNo,
-    branch,
-    category,
-    dateOfAdmission,
-    cpi,
-  } = data;
+  const { programme, academicYear, regNo, branch, category, cpi } = data;
   return (
     <>
       <Group grow>

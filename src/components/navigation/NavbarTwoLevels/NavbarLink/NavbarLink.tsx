@@ -13,7 +13,6 @@ export function LinksGroup({
   handleClick,
   isActive = false,
   onlyIcon = false,
-  closeNavbarOnClick = false,
 }: LinksGroupProps) {
   const boxRef = useRef<HTMLDivElement>(null);
   const [showTooltip, setShowTooltip] = useState(false);

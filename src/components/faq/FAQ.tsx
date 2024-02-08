@@ -2,6 +2,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { useState } from "react";
 import { Modal, Button, Group, Text } from "@mantine/core";
 import { useStyles } from "./FAQ.styles";
+
 function FAQ() {
   const [opened, { open, close }] = useDisclosure(false);
   const { classes, theme } = useStyles();

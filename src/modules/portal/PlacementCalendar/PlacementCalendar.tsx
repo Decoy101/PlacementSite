@@ -1,13 +1,13 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import { google } from "googleapis";
-import { useEffect } from "react";
+// import { google } from "googleapis";
+// import { useEffect } from "react";
 
 function PlacementCalendar() {
   //   const events = [{ title: "Meeting", start: new Date() }];
   const CREDENTIALS = JSON.parse(import.meta.env.VITE_CREDENTIALS!);
-  const CALENDAR_ID = import.meta.env.VITE_CALENDAR_ID!;
-  const SCOPES = "https://www.googleapis.com/auth/calendar";
+  // const CALENDAR_ID = import.meta.env.VITE_CALENDAR_ID!;
+  // const SCOPES = "https://www.googleapis.com/auth/calendar";
   //   const calendar = google.calendar({ version: "v3" });
   //   const auth = new google.auth.JWT({
   //     email: CREDENTIALS.client_email,

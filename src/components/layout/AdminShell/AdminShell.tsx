@@ -1,11 +1,10 @@
 import { AppShell, MediaQuery, Container } from "@mantine/core";
 import { Outlet } from "react-router-dom";
 import { Header } from "..";
-import { useState } from "react";
+
 import { Navbar } from "../Navbar";
 import { useAtom } from "jotai";
 import { navStore } from "@/data/store/navbar.store";
-import { useNavbar } from "@/data/hooks/useNavbar";
 
 function AdminShell() {
   const [isNavbarOpened, setIsNavbarOpened] = useAtom(navStore.isNavbarOpened);

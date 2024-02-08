@@ -15,7 +15,7 @@ function LoginForm() {
     try {
       await signInAuthUserWithEmailAndPassword(data.email, data.password);
     } catch (error) {
-      switch (error.code) {
+      switch (error!) {
         case "auth/invalid-login-credentials":
           alert("Invalid login credentials");
           break;

@@ -10,7 +10,7 @@ type NavbarProps = {
   footerMenu: NavbarFooterProps;
 };
 function NavbarTwoLevels({ footerMenu, hidden }: NavbarProps) {
-  const [isSliding, setIsSliding] = useState<boolean>(false);
+  const [isSliding] = useState<boolean>(false);
   const { classes } = useStyles();
   return (
     <Navbar

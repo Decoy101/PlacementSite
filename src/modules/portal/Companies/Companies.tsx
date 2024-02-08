@@ -52,7 +52,7 @@ function Companies() {
       </Flex>
       <div>
         <Drawer opened={opened} onClose={close} position="right">
-          <CompanyProfile close={close} />
+          <CompanyProfile />
         </Drawer>
       </div>
       <Stack mt={"xl"}>

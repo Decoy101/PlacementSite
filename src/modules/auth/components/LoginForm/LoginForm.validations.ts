@@ -1,13 +1,13 @@
 import { ValidationObjectSchema, emailRegex } from "@/common/utils";
 
-import { ILogin } from "@/projectX-sdk";
+import { IAccount } from "@/projectX-sdk";
 
 import strings from "@/common/strings/validations.json";
 
 /**
  * Get validation schema for Login Form
  */
-export const validationSchema: ValidationObjectSchema<ILogin> = {
+export const validationSchema: ValidationObjectSchema<IAccount> = {
   email: {
     rules: {
       regex: emailRegex,

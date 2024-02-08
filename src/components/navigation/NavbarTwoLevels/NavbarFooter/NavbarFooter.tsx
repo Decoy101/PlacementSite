@@ -1,26 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState } from "react";
-import {
-  Navbar,
-  Group,
-  Text,
-  Divider,
-  Menu,
-  useMantineTheme,
-  UnstyledButton,
-} from "@mantine/core";
-import NavbarFooterSkeleton from "./NavbarFooterSkeleton";
+import { Navbar, Group, Text, Divider, Menu } from "@mantine/core";
 import { NavbarFooterProps } from "./NavbarFooter.types";
 import { useStyles } from "./NavbarFooter.styles";
 import { AvatarImage } from "@/components/core/AvatarImage";
-import { IconBell } from "@/components/icons";
 import { useAtomValue } from "jotai";
 import { navStore } from "@/data/store/navbar.store";
 function NavbarFooter({ name, email, avatar, menu }: NavbarFooterProps) {
   const isAsideFullWidth = useAtomValue(navStore.isAsideFullWidth);
-  const isLoadingNavbar = useAtomValue(navStore.isLoadingNavbarAtom);
+  // const isLoadingNavbar = useAtomValue(navStore.isLoadingNavbarAtom);
   const { classes } = useStyles({ showFullWidth: isAsideFullWidth });
-  const theme = useMantineTheme();
+  // const theme = useMantineTheme();
   return (
     <>
       <Navbar.Section className={classes.navFooter}>

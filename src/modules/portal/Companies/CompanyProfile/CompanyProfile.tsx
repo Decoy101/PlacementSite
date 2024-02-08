@@ -3,7 +3,8 @@ import { TextInput, Text, Group, Button } from "@mantine/core";
 import { DateInput } from "@mantine/dates";
 import { Company } from "../Company.types";
 import { addCompany } from "@/firebase";
-function CompanyProfile({ close }) {
+
+function CompanyProfile() {
   const defaultCompanyDetails: Company = {
     name: "",
     lastDateToApply: new Date().toDateString(),

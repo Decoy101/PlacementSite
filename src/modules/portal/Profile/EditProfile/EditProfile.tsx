@@ -13,7 +13,7 @@ import {
   defaultPersonalDetailFields,
 } from "../components/Personal/PersonalDetails.types";
 import { Dropzone, IMAGE_MIME_TYPE, PDF_MIME_TYPE } from "@mantine/dropzone";
-import { updateDetails, getUserDetails, getUser } from "@/firebase";
+import { updateDetails, getUserDetails } from "@/firebase";
 import { useUserAuth } from "@/contexts/user.context";
 
 function EditProfile() {
@@ -31,15 +31,15 @@ function EditProfile() {
       const { personalDetails, academicDetails } = await getUserDetails(
         currentUser!
       );
-      const userSnapshot = await getUser(currentUser!);
-      setUserEmail(userSnapshot!.email);
+      // const userSnapshot = await getUser(currentUser!);
+      // setUserEmail(userSnapshot!.email);
       if (personalDetails && academicDetails) {
         setPersonalDataFields(personalDetails as PersonalDetails);
         setAcademicDataFields(academicDetails as AcademicDetails);
       }
     };
     fetchData();
-  }, []);
+  });
 
   const handleSubmit = async () => {
     if (currentUser) {
