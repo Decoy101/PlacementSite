@@ -125,7 +125,7 @@ function HomePage() {
     </Group>
   );
   return (
-    <>
+    <div style={{ overflowX: "hidden" }}>
       <NavigationHeader />
       <AspectRatio ratio={20 / 9} maw={2000}>
         <div style={{ zIndex: 1 }}>
@@ -263,7 +263,7 @@ function HomePage() {
       </Element>
 
       <Footer />
-    </>
+    </div>
   );
 }
 

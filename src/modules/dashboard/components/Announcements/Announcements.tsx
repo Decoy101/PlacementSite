@@ -31,7 +31,7 @@ function Announcements() {
       setRole(userSnapshot?.role);
     };
     fetchData();
-  }, []);
+  }, [opened]);
   console.log(announcements);
   return (
     <>
@@ -43,7 +43,7 @@ function Announcements() {
           </Text>
         </Group>
 
-        {role === "student" ? (
+        {role === "cgc" ? (
           <Button onClick={open}>Add Announcement</Button>
         ) : (
           <></>

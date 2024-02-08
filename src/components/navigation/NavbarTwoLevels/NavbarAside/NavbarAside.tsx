@@ -1,7 +1,7 @@
 // import { useNavigate } from "react-router-dom";
 
 import { IconBell } from "@/components/icons";
-import { Navbar, ScrollArea, Divider, Text, Space, Image } from "@mantine/core";
+import { Navbar, ScrollArea, Divider, Text, Space } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import NavbarAsideSkeleton from "./NavbarAsideSkeleton";
 import NavbarFooter from "../NavbarFooter/NavbarFooter";
@@ -11,7 +11,7 @@ import { NavbarAsideProps } from "./NavbarAside.types";
 import { navStore } from "@/data/store/navbar.store";
 import { useAtomValue } from "jotai";
 import { appPaths } from "@/routes/paths";
-import CGCLogo from "../../../../assets/cgc-nav-logo.png";
+
 function NavbarAside({ isSliding, footerMenu }: NavbarAsideProps) {
   const isAsideFullWidth = useAtomValue(navStore.isAsideFullWidth);
   const isLoadingNavbar = useAtomValue(navStore.isLoadingNavbarAtom);
@@ -48,7 +48,7 @@ function NavbarAside({ isSliding, footerMenu }: NavbarAsideProps) {
           />
           <LinksGroup
             icon={<IconBell />}
-            label="Academic Calendar"
+            label="Placement Calendar"
             width={280}
             isActive={false}
             handleClick={() => navigate(appPaths.calendar)}
@@ -58,6 +58,7 @@ function NavbarAside({ isSliding, footerMenu }: NavbarAsideProps) {
             label="Work Ex"
             width={280}
             isActive={false}
+            handleClick={() => navigate(appPaths.wordEx)}
           />
           <Divider mt="md" />
         </Navbar.Section>

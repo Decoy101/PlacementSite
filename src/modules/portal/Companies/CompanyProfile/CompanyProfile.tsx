@@ -6,7 +6,7 @@ import { addCompany } from "@/firebase";
 function CompanyProfile({ close }) {
   const defaultCompanyDetails: Company = {
     name: "",
-    lastDateToApply: new Date().toISOString(),
+    lastDateToApply: new Date().toDateString(),
     roles: "",
     formLink: "",
   };
@@ -59,7 +59,7 @@ function CompanyProfile({ close }) {
           />
         </form>
 
-        <Group grow style={{ marginTop: `30rem` }}>
+        <Group grow>
           <Button
             onClick={() => {
               onSubmit();

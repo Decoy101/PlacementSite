@@ -2,13 +2,13 @@ import { AnimatePresence } from "framer-motion";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { SuspenseLoader } from "@/components";
 import { appPaths, appRoot } from "./paths";
-
 import { Profile } from "@/modules/portal/Profile";
 import { AdminShell } from "@/components/layout";
 import ProtectedRoute from "./ProtectedRoute";
 import { PlacementCalendar } from "@/modules/portal/PlacementCalendar";
 import { Companies } from "@/modules/portal/Companies";
 import { Dashboard } from "@/modules/dashboard";
+import { WorkEx } from "@/modules/portal/WorkEx";
 
 function AppRoutes() {
   return (
@@ -26,6 +26,7 @@ function AppRoutes() {
                   element={<PlacementCalendar />}
                 />
                 <Route path={appPaths.companies} element={<Companies />} />
+                <Route path={appPaths.wordEx} element={<WorkEx />} />
                 <Route path="*" element={<Navigate to={appRoot} />} />
               </Route>
             </Route>

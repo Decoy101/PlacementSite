@@ -4,4 +4,5 @@ export const appPaths = {
   profile: "/profile",
   calendar: "/calendar",
   companies: "/companies",
+  wordEx: "/workEx",
 };

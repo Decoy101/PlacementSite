@@ -37,14 +37,14 @@ function Companies() {
       setCompanies(companies);
     };
     fetchData();
-  }, []);
+  }, [opened]);
   return (
     <>
       <Flex justify={"space-between"}>
         <Text size={"xl"} fw={500}>
           List of All Companies
         </Text>
-        {userRole === "student" ? (
+        {userRole === "cgc" ? (
           <Button onClick={open}>Add A Company</Button>
         ) : (
           <></>

@@ -41,7 +41,7 @@ function NavbarPopover({ name, email, avatar }: NavbarPopoverProps) {
         <Menu.Item>
           <Group
             className={classes.avatar}
-            onClick={() => navigate("/portal/profile")}
+            onClick={() => navigate("/profile")}
           >
             <AvatarImage
               alt={name}

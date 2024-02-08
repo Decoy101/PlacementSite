@@ -22,6 +22,7 @@ export const useStyles = createStyles((theme) => ({
   },
   statsWrapper: {
     display: "flex",
+    flexWrap: "wrap",
   },
   stat: {
     padding: theme.spacing.xl,

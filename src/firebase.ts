@@ -19,6 +19,7 @@ import {
   getDocs,
   collection,
 } from "firebase/firestore";
+import { getStorage, ref } from "firebase/storage";
 import { PersonalDetails } from "./modules/portal/Profile/components/Personal/PersonalDetails.types";
 import { AcademicDetails } from "./modules/portal/Profile/components/Academic/AcademicDetails.types";
 import { Company } from "./modules/portal/Companies/Company.types";
@@ -41,7 +42,7 @@ const firebaseConfig = {
   appId: "1:62668471555:web:cee15f464afe2a06bafd36",
 };
 
-initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
 
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({
@@ -49,6 +50,7 @@ provider.setCustomParameters({
 });
 
 export const auth = getAuth();
+
 export const signInWithGooglePopUp = () => signInWithPopup(auth, provider);
 const db = getFirestore();
 export const createUserDocumentFromAuth = async (
@@ -227,3 +229,13 @@ export const getAllAnnouncements = async () => {
   }
   return allAnnouncements;
 };
+
+//Storage
+export const storage = getStorage(firebaseApp);
+export const profilePicRef = ref(storage, "profilePics");
+// export const uploadResume = async (email: string, file) => {
+//   const resumeRef = ref(storage, "Resumes/" + email + ".pdf");
+//   await uploadBytes(resumeRef, file).then((snapshot) => {
+//     console.log("Uploaded a blob or file!");
+//   });
+// };
