@@ -1,8 +1,8 @@
 export const appRoot = "/";
 export const appPaths = {
-  root: "/",
-  profile: "/profile",
-  calendar: "/calendar",
-  companies: "/companies",
-  wordEx: "/workEx",
+  root: "/portal",
+  profile: "/portal/profile",
+  calendar: "/portal/calendar",
+  companies: "/portal/companies",
+  wordEx: "/portal/workEx",
 };

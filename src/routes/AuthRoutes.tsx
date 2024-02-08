@@ -14,7 +14,7 @@ function AuthRoutes() {
     <>
       <SuspenseLoader>
         <Routes>
-          <Route path="/site" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
           <Route element={<AuthShell />}>
             <Route path={authRoot} element={<LoginForm />} />
             <Route path={authPaths.login} element={<LoginForm />} />

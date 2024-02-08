@@ -1,6 +1,6 @@
-export const authRoot = "/";
+export const authRoot = "/portal";
 export const authPaths = {
-  login: "/login",
-  signUp: "/sign-up",
-  forgotPassword: "/forgot-password",
+  login: "/portal/login",
+  signUp: "/portal/sign-up",
+  forgotPassword: "/portal/forgot-password",
 };
